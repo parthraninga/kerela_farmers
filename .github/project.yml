@@ -1,0 +1,180 @@
+name: "AI Farming Assistant"
+description: "Agile Scrum Board for building the AI-powered personal farming assistant (Supabase + AI + Mobile)."
+public: true
+
+# Board Columns
+columns:
+  - name: "Backlog"
+  - name: "To Do"
+  - name: "In Progress"
+  - name: "Review/QA"
+  - name: "Done"
+
+# Labels
+labels:
+  - name: "epic:profiling"
+    color: "#1abc9c"
+  - name: "epic:chatbot"
+    color: "#3498db"
+  - name: "epic:logbook"
+    color: "#9b59b6"
+  - name: "epic:advisory"
+    color: "#f39c12"
+  - name: "epic:schemes"
+    color: "#e67e22"
+  - name: "epic:prices"
+    color: "#2ecc71"
+  - name: "epic:diagnosis"
+    color: "#e74c3c"
+  - name: "epic:knowledge"
+    color: "#34495e"
+  - name: "epic:memory"
+    color: "#7f8c8d"
+  - name: "priority:high"
+    color: "#ff0000"
+  - name: "priority:medium"
+    color: "#ffcc00"
+  - name: "priority:low"
+    color: "#95a5a6"
+  - name: "type:feature"
+    color: "#0e76a8"
+  - name: "type:bug"
+    color: "#d35400"
+  - name: "type:enhancement"
+    color: "#8e44ad"
+
+# Automation Rules
+automation:
+  - event: issues.opened
+    action:
+      move_to: "Backlog"
+  - event: issues.assigned
+    action:
+      move_to: "To Do"
+  - event: pull_request.opened
+    action:
+      move_to: "In Progress"
+  - event: pull_request.closed
+    action:
+      move_to: "Done"
+
+# Backlog Issues
+issues:
+  # EPIC 1: Farmer & Farm Profiling
+  - title: "Farmer can register profile"
+    labels: ["epic:profiling", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want to register my farm details (crop, soil, irrigation) so I can get personalized advice.
+      **Acceptance Criteria**:
+      - Form fields: crop, land size, soil type, irrigation.
+      - Data stored in Supabase Postgres.
+      - Validations applied.
+
+  - title: "Auto-capture location via GPS"
+    labels: ["epic:profiling", "type:feature", "priority:medium"]
+    body: |
+      As a farmer, I want my location auto-captured with GPS so I don’t need to type it.
+      **Acceptance Criteria**:
+      - Mobile app can fetch coordinates.
+      - Linked to external API for soil/weather info.
+
+  # EPIC 2: Conversational Chatbot
+  - title: "Chatbot responds in Malayalam (text)"
+    labels: ["epic:chatbot", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want to chat in Malayalam text so I can understand advice easily.
+      **Acceptance Criteria**:
+      - Farmer types → Bot replies in Malayalam.
+      - Handles unknown queries gracefully.
+
+  - title: "Chatbot supports voice (speech-to-text & TTS)"
+    labels: ["epic:chatbot", "type:enhancement", "priority:medium"]
+    body: |
+      As a farmer, I want voice chat in Malayalam so I can interact hands-free.
+      **Acceptance Criteria**:
+      - Speech-to-text captures Malayalam voice.
+      - Text-to-speech replies in Malayalam.
+
+  - title: "Chatbot remembers past chats"
+    labels: ["epic:chatbot", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want the chatbot to remember my past questions and advice so responses improve over time.
+
+  # EPIC 3: Activity Logbook
+  - title: "Log farming activities"
+    labels: ["epic:logbook", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want to log sowing, irrigation, and fertilizer activities so I can track crop progress.
+      **Acceptance Criteria**:
+      - Add activity entry form.
+      - Save to Supabase DB.
+
+  - title: "Calendar view of activities"
+    labels: ["epic:logbook", "type:enhancement", "priority:medium"]
+    body: |
+      As a farmer, I want to see a calendar view of activities so I can track and plan ahead.
+
+  - title: "Reminders for key farming tasks"
+    labels: ["epic:logbook", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want reminders (push notifications) for irrigation and sowing so I don’t forget important tasks.
+
+  # EPIC 4: Personalized Advisory
+  - title: "Weather-based advice"
+    labels: ["epic:advisory", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want AI to send me proactive advice based on weather so I can take precautions.
+      **Example**: Rain expected tomorrow → avoid pesticide spray.
+
+  - title: "Stage-based crop advisory"
+    labels: ["epic:advisory", "type:feature", "priority:medium"]
+    body: |
+      As a farmer, I want advice based on my crop stage so I can optimize yield.
+
+  # EPIC 5: Government Schemes
+  - title: "View available schemes"
+    labels: ["epic:schemes", "type:feature", "priority:medium"]
+    body: |
+      As a farmer, I want to view active government schemes so I can apply for benefits.
+
+  - title: "Scheme reminders"
+    labels: ["epic:schemes", "type:enhancement", "priority:low"]
+    body: |
+      As a farmer, I want reminders for scheme deadlines so I don’t miss out.
+
+  # EPIC 6: Crop Price Trends
+  - title: "Show trending crop prices"
+    labels: ["epic:prices", "type:feature", "priority:medium"]
+    body: |
+      As a farmer, I want to see current crop market trends so I can decide what to grow.
+
+  - title: "Suggest crops based on soil and land"
+    labels: ["epic:prices", "type:enhancement", "priority:low"]
+    body: |
+      As a farmer, I want crop suggestions based on my soil data so I can increase profitability.
+
+  # EPIC 7: Photo/Video Diagnosis
+  - title: "Upload photos for diagnosis"
+    labels: ["epic:diagnosis", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want to upload crop images so AI can detect pests or diseases.
+      **Acceptance Criteria**:
+      - Farmers can upload image/video.
+      - AI suggests diagnosis + treatment.
+
+  # EPIC 8: Knowledge Engine
+  - title: "Integrate crop calendars & pest alerts"
+    labels: ["epic:knowledge", "type:feature", "priority:medium"]
+    body: |
+      As a system, I want to integrate local crop calendars and pest alerts so chatbot answers are accurate.
+
+  - title: "Integrate soil & weather APIs"
+    labels: ["epic:knowledge", "type:feature", "priority:medium"]
+    body: |
+      As a system, I want to fetch soil & weather data so I can power the advisory engine.
+
+  # EPIC 9: Learning Over Time
+  - title: "System remembers farmer history"
+    labels: ["epic:memory", "type:feature", "priority:high"]
+    body: |
+      As a farmer, I want the system to remember my past activities so advice improves each season.
